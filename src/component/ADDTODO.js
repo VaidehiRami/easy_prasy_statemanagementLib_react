@@ -1,0 +1,32 @@
+import React ,{useState}from 'react';
+import { useStoreActions } from "easy-peasy";
+
+const ADDTODO = () => {
+    const [title, setTitle] = useState("");
+
+    const add = useStoreActions(actions => actions.add);
+
+  return (
+     <div>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          add({
+            title,
+            completed: false
+          });
+        }}
+      >
+        <input
+          type="text"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+          placeholder="Add todo title..."
+        />
+        <input type="submit" value="Add Todo" />
+      </form>
+    </div>
+  );
+}
+
+export default ADDTODO
